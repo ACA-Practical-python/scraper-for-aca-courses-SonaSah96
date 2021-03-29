@@ -79,7 +79,6 @@ def first_scraping_step(path):
             if not url.startswith("http"):
                 url = f"https://aca.am/{url.strip('../')}"
         url_list.append(url)
-    print(url_list)
     for one_url in url_list:
         info_for_every_lesson(one_url)
 
