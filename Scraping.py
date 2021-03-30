@@ -4,7 +4,7 @@ import os
 from email_sending import *
 from database import *
 from sqlalchemy.orm import sessionmaker
-
+from sqlalchemy.inspection import inspect
 
 session = sessionmaker(bind=engine)()
 new_aca_lesson_list = []
@@ -91,6 +91,11 @@ def enter_first_aca_page():
         if response.getcode() == 200:
             with open("aca_en.html", "wb") as fd:
                 fd.write(response.read())
+
+    en_inspect = inspect(engine)
+    if not (en_inspect.has_table("lessons") and en_inspect.has_table("tutors")):
+        metadata.create_all(bind=engine)
+
     first_scraping_step("aca_en.html")
 
 

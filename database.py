@@ -2,6 +2,7 @@ from sqlalchemy import create_engine, Column, String, Integer, ForeignKey
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import relationship
 
+
 engine = create_engine("sqlite:///lesson_and_tutor.db")
 Base = declarative_base()
 
@@ -26,6 +27,3 @@ class Tutor(Base):
 
 
 metadata = Base.metadata
-
-if __name__ == "__main__":
-    metadata.create_all(bind=engine)
